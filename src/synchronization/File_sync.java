@@ -1,21 +1,18 @@
 package synchronization;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class File_sync {
 	public static final int COPY_BUFFER = 1024 * 1024 * 8;
 	public static final int COMPARE_BUFFER = 1024 * 8;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		File f1 = new File("C:\\zapoctak\\a.txt");
-		File f2 = new File("C:\\zapoctak\\a.txt");
 		File f3 = new File("C:\\zapoctak\\sub1\\a.txt");
 		File f4 = new File("C:\\zapoctak\\sub2\\a.txt");
 		try {
-			boolean f1f2 = compareFiles(f3, f4, true);
-			if (f1f2) {
+			int f1f2 = compareFiles(f3, f4, true);
+			if (f1f2 == 1) {
 				System.out.println("spravne");
 			} else {
 				System.out.println("nespravne");
@@ -35,18 +32,18 @@ public class File_sync {
 	 *            file2
 	 * @param detailed
 	 *            Compare also contents of files
-	 * @return Whether they have equal name, last modified and size.
+	 * @return -1: one of files is not file 0: files are not same 1: files are same.
 	 */
-	public static boolean compareFiles(File f1, File f2, boolean compareContent) throws FileNotFoundException {
+	public static int compareFiles(File f1, File f2, boolean compareContent) {
 
 		if (!f1.isFile() || !f2.isFile())
-			return false;
+			return -1;
 		if (!f1.getName().equals(f2.getName()))
-			return false;
+			return 0;
 		if (f1.length() != f2.length())
-			return false;
+			return 0;
 		if (f1.lastModified() != f2.lastModified())
-			return false;
+			return 0;
 		if (compareContent) {
 			try (InputStream is1 = new FileInputStream(f1); InputStream is2 = new FileInputStream(f2)) {
 				byte[] buffer1 = new byte[COMPARE_BUFFER];
@@ -57,16 +54,40 @@ public class File_sync {
 					len = is1.read(buffer1);
 					is2.read(buffer2);
 					if (!Arrays.equals(buffer1, buffer2))
-						return false;
+						return 0;
 				} while (len != -1);
 			} catch (IOException e) {
 				System.out.println("nastala chyba");
-				return false;
+				return 0;
 			}
 
 		}
 
-		return true;
+		return 1;
+	}
+
+	public static FolderCompareToken compareFolders(File f1, File f2, boolean recursive, int depth) {
+		ArrayList<File> sourceFiles = new ArrayList<File>(Arrays.asList(f1.listFiles()));
+		Collections.sort(sourceFiles);
+		ArrayList<File> targetFiles = new ArrayList<File>(Arrays.asList(f2.listFiles()));
+		Collections.sort(targetFiles);
+		ArrayList<Pair<File,File>> sameNames = new ArrayList<Pair<File,File>>();
+		int j = 0;
+		int k = 0;
+		while (j < sourceFiles.size() || k < targetFiles.size()) {
+			if (sourceFiles.get(j).getName().equals(targetFiles.get(k).getName())) {
+				j++;
+				k++;
+				sameNames.add(new Pair<File,File>(sourceFiles.get(j),targetFiles.get(k)));
+			}
+			else
+			{
+				if(sourceFiles.get(j).getName())
+					
+			}
+		}
+
+		return null;
 	}
 
 }
