@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DifferentFilesChooser {
 	
 	
-	public List<FileToCopyToken> DifferentFiles;
+	private List<FileToCopyToken> DifferentFiles;
 	public DifferentFilesChooser(List<FileToCopyToken> df) {
 		this.DifferentFiles=df;
 	}

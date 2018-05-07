@@ -23,7 +23,7 @@ public class FileToCopyToken {
 		if (!write) {
 			return;
 		}
-		byte[] b = new byte[File_sync.COPY_BUFFER];
+		byte[] b = new byte[ArgumentParser.COPY_BUFFER];
 		target.getParentFile().mkdirs();
 		target.createNewFile();
 		
