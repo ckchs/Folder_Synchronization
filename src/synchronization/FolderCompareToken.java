@@ -240,7 +240,7 @@ public class FolderCompareToken {
 	}
 
 	enum typeOfWrite {
-		BothWaysAskDiff, BothWayDiffsToTarget, BothWayDiffsToSource, BothWayNoDiffs, SourceToTargetWithDiffs, SourceToTargetAskDiffs, SourceToTargetNoDiffs, TargetToSourceWithDiffs, TargetToSourceAskDiffs, TargetToSourceNoDiffs
+		badType, BothWaysAskDiff, BothWayDiffsToTarget, BothWayDiffsToSource, BothWayNoDiffs, SourceToTargetWithDiffs, SourceToTargetAskDiffs, SourceToTargetNoDiffs, TargetToSourceWithDiffs, TargetToSourceAskDiffs, TargetToSourceNoDiffs
 	}
 
 	interface FileCheck {
