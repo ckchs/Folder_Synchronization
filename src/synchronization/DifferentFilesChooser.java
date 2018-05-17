@@ -5,14 +5,29 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DifferentFilesChooser.
+ * Used for console comunication with user
+ */
 public class DifferentFilesChooser {
 	
 	
+	/** The Different files. */
 	private List<FileToCopyToken> DifferentFiles;
+	
+	/**
+	 * Instantiates a new different files chooser.
+	 *
+	 * @param df the df
+	 */
 	public DifferentFilesChooser(List<FileToCopyToken> df) {
 		this.DifferentFiles=df;
 	}
 	
+	/**
+	 * Console ask.
+	 */
 	public void consoleAsk()
 	{
 		for (Iterator<FileToCopyToken> iterator = DifferentFiles.iterator(); iterator.hasNext();) {

@@ -6,9 +6,23 @@ import java.util.*;
 
 import synchronization.FileToCopyToken.FTCTtype;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FolderCompareToken.
+ */
 public class FolderCompareToken {
+	
+	/** The ftc. */
 	public List<FileToCopyToken> FTC;
 
+	/**
+	 * Generate List of differences between source and target
+	 *
+	 * @param f1 the f 1
+	 * @param f2 the f 2
+	 * @param recursive the recursive
+	 * @param depth the depth
+	 */
 	FolderCompareToken(File f1, File f2, boolean recursive, int depth) {
 		FTC = new ArrayList<FileToCopyToken>();
 		if (!f1.exists() && !f2.exists()) {
@@ -144,12 +158,22 @@ public class FolderCompareToken {
 		}
 	}
 
+	/**
+	 * Merge.
+	 * Used when recursion return is merged into actual list 
+	 * @param ftc the ftc
+	 */
 	void merge(FolderCompareToken ftc) {
 		while (!ftc.FTC.isEmpty()) {
 			FTC.add(ftc.FTC.remove(ftc.FTC.size() - 1));
 		}
 	}
 
+	/**
+	 * Write.
+	 * Tell each token to write. Which write and which dont depends on type of write
+	 * @param type the type
+	 */
 	public void write(typeOfWrite type) {
 
 		if (type == typeOfWrite.BothWaysAskDiff || type == typeOfWrite.SourceToTargetAskDiffs
@@ -227,6 +251,11 @@ public class FolderCompareToken {
 
 	}
 
+	/**
+	 * Gets the different tokens.
+	 *
+	 * @return Tokens that are both in source and target but are different
+	 */
 	private List<FileToCopyToken> getDifferentTokens() {
 		List<FileToCopyToken> DifferentFiles = new ArrayList<FileToCopyToken>();
 		for (Iterator<FileToCopyToken> iterator = FTC.iterator(); iterator.hasNext();) {
@@ -239,12 +268,34 @@ public class FolderCompareToken {
 		return DifferentFiles;
 	}
 
+	/**
+	 * The Enum typeOfWrite.
+	 */
 	enum typeOfWrite {
-		badType, BothWaysAskDiff, BothWayDiffsToTarget, BothWayDiffsToSource, BothWayNoDiffs, SourceToTargetWithDiffs, SourceToTargetAskDiffs, SourceToTargetNoDiffs, TargetToSourceWithDiffs, TargetToSourceAskDiffs, TargetToSourceNoDiffs
+		
+		/** The bad type. */
+		badType, 
+ /** The Both ways ask diff. */
+ BothWaysAskDiff, 
+ /** The Both way diffs to target. */
+ BothWayDiffsToTarget, 
+ /** The Both way diffs to source. */
+ BothWayDiffsToSource, 
+ /** The Both way no diffs. */
+ BothWayNoDiffs, 
+ /** The Source to target with diffs. */
+ SourceToTargetWithDiffs, 
+ /** The Source to target ask diffs. */
+ SourceToTargetAskDiffs, 
+ /** The Source to target no diffs. */
+ SourceToTargetNoDiffs, 
+ /** The Target to source with diffs. */
+ TargetToSourceWithDiffs, 
+ /** The Target to source ask diffs. */
+ TargetToSourceAskDiffs, 
+ /** The Target to source no diffs. */
+ TargetToSourceNoDiffs
 	}
 
-	interface FileCheck {
-		boolean test(FileToCopyToken ftct);
-	}
 
 }

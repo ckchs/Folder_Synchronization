@@ -70,9 +70,9 @@ Kazdu minutu prebehne synchronizacia (nastavitelne pomocou -t)
 Format v tvare [SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)
 
 Priklady pouzitia:
-priecinok folder1 zalohuje do folder2, kazde 3 minuty a format bude v tvare 01.01.1970,00:00:00
+priecinok folder1 zalohuje do folder2, kazde 3 minuty a format bude v tvare 01011970000000
 
-	-s \folder1 -t \folder2 -r -time 180 -backup -format dd.MM.yyyy,HH:mm:ss
+	-s \folder1 -t \folder2 -r -time 180 -backup -format ddMMyyyyHHmmss
 
 
 

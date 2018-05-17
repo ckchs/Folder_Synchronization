@@ -3,11 +3,21 @@ package synchronization;
 import java.io.File;
 import java.util.Comparator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class File_Comparator.
+ */
 public class File_Comparator implements Comparator<java.io.File> {
 
+	/**
+	 * Instantiates a new file comparator.
+	 */
 	public File_Comparator() {
 	}
 
+	/** 
+	 * Compare only names
+	 */
 	@Override
 	public int compare(File o1, File o2) {
 		if(!o1.exists())
@@ -18,6 +28,10 @@ public class File_Comparator implements Comparator<java.io.File> {
 		
 	}
 	
+	/**
+	 * Compare names, length and lastmodified
+	 * 
+	 */
 	public int advancedCompare(File o1, File o2) {
 		if(!o1.exists())
 			return 1;
