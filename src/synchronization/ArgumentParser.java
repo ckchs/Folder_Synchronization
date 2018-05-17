@@ -16,7 +16,7 @@ public class ArgumentParser {
 	static boolean backUp=false;
 	static String typeStr;
 	static typeOfWrite type;
-	static long time;
+	static long time=60;
 	static SimpleDateFormat sdt=new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	public static void main(String[] args) {
 		try {
@@ -42,12 +42,20 @@ public class ArgumentParser {
 				case "-type":
 					i++;
 					typeStr=args[i];
+					break;
 				case "-format":
 					i++;
 					sdt=new SimpleDateFormat(args[i]);
-				default:
 					break;
-
+				case "-d":
+					i++;
+					recursive_depth=Integer.parseInt(args[i]);
+					break;
+				case "-r":
+					recursive=true;
+				default:
+					throw new Exception("wrong argument");
+					
 				}
 			}
 			type=stringToType(typeStr);
